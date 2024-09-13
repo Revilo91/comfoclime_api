@@ -16,4 +16,27 @@ Each device connected to the ComfoNet will also have a device ID (DEVID). This c
 | /device/$DEVID$/property/X/Y/Z | reading properties of device | |
 | /device/$DEVID$/definition | reads some basic data for the device | |
 
-# 
+# Reading properties
+
+The ./property endpoint reads values from the ComfoNet bus similiar to the RMI Protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-RMI.md). 
+The address translates like:
+/device/$DEVID$/property/X/Y/Z
+X = Unit
+Y = Subunit
+Z = Property
+For example querying /device/.../property/1/1/4 on a ComfoAir device returns the serial number of the device. You always receive data as byte array, bytes represented in decimal representation.
+Changing a value in the app will result in a PUT request to the property. 
+
+# ComfoClime Nodes
+
+| Unit | SubUnit | Property | Access | Format | Description |
+|------|---------|----------|--------|--------|-------------|
+| NODE | 1       | 1        |        | UINT8  | ?? = 1      |
+| NODE | 1       | 2        |        | UINT8  | ?? = 20      |
+| NODE | 1       | 3        |        | UINT8  | ?? = 1      |
+| NODE | 1       | 4        |        | STRING | Serial number MBE...  |
+| NODE | 1       | 5        |        | UINT8  | ?? = 1      |
+| NODE | 1       | 6        |        | UINT8  | Possibly firmware version |
+| NODE | 1       | 7        |        | UINT32 | ?? = [0,120,16,192] |
+
+
