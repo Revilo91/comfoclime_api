@@ -14,6 +14,7 @@ Each device connected to the ComfoNet will also have a device ID (DEVID). This c
 | /system/$UUID$/dashboard | data for dashboard in app | temperatures, fanspeeds, ... |
 | /system/$UUID$/alarms | all errors of connected devices | seems to contain history |
 | /device/$DEVID$/property/X/Y/Z | reading properties of device | |
+| /device/$DEVID$/telemetry/N | reading sensor values from device | |
 | /device/$DEVID$/definition | reads some basic data for the device | |
 
 # Reading properties
@@ -24,8 +25,11 @@ The address translates like:
 X = Unit
 Y = Subunit
 Z = Property
-For example querying /device/.../property/1/1/4 on a ComfoAir device returns the serial number of the device. You always receive data as byte array, bytes represented in decimal representation.
+For example querying /device/.../property/1/1/4 on a ComfoAir device returns the serial number of the device. You always receive data as byte array in decimal representation.
 Changing a value in the app will result in a PUT request to the property. 
+
+The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to the PDO protocol.
+
 
 # ComfoClime Nodes
 
@@ -38,5 +42,19 @@ Changing a value in the app will result in a PUT request to the property.
 | NODE | 1       | 5        |        | UINT8  | ?? = 1      |
 | NODE | 1       | 6        |        | UINT8  | Possibly firmware version |
 | NODE | 1       | 7        |        | UINT32 | ?? = [0,120,16,192] |
+
+# ComfoClime Sensors
+
+| Telemetry number | Format | Description |
+|------------------|--------|-------------|
+| 4145 | | TPMA temperature |
+| 4146 | | time ?? |
+| 4148 | | temperature ?? |
+| 4149 | | ComfoClime mode ?? (0=Comfort/Eco,2=Power) |
+| 4150 | | = 0 ?? |
+| 4151 | | temperature ?? |
+| 4152 | | temperature ?? |
+| 4153 | | temperature ?? [3,0] |
+| 4154 | | indoor temperature |
 
 
