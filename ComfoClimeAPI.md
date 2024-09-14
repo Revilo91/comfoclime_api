@@ -47,6 +47,20 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 
 | Telemetry number | Format | Description |
 |------------------|--------|-------------|
+| 1-500 | | N/A |
+| 4000-4111 | | N/A |
+| 4112 | | = 0 ?? |
+| 4113 | | = 0 ?? |
+| 4116 | | = 0 ?? |
+| 4117 | | = 255 ?? |
+| 4120 | | = 0 ?? |
+| 4121 | | = 0 ?? |
+| 4124 | | = [255,255,255,255] ?? |
+| 4125 | | = [0,0,0,0] ?? |
+| 4128 | | = [1,0] ?? |
+| 4129 | | = [0,0] ?? |
+| 4132 | | = [0,0] ?? |
+| 4133 | | = [0,0] ?? |
 | 4145 | | TPMA temperature |
 | 4146 | | time ?? |
 | 4148 | | temperature ?? |
@@ -56,5 +70,12 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 4152 | | temperature ?? |
 | 4153 | | temperature ?? [3,0] |
 | 4154 | | indoor temperature |
+| 4193 | | supply temperature ?? |
+| 4194 | | exhaust temperature ?? |
+| 4195 | | supply temperature ?? |
+| 4196 | | temperature ?? |
+| 4197 | | ?? = [38,2] |
+| 4198 | | = 0 ?? |
+| 4199 | | = 0 ?? |
 
 
