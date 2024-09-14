@@ -107,7 +107,8 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 
 | Telemetry number | Format | Description |
 |------------------|--------|-------------|
-| 1-500 | | N/A |
+| 1-784 | | N/A |
+| 785 | | = 0 ?? |
 | 3500-4111 | | N/A |
 | 4112 | | = 0 ?? |
 | 4113 | | = 0 ?? |
