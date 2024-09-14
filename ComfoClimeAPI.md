@@ -58,9 +58,9 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 22   | 1       | 8        |        | UINT8  | automatic temperature select |
 | 22   | 1       | 9        |        | UINT16 | comfort temp heating |
 | 22   | 1       | 10       |        | UINT16 | comfort temp cooling |
-| 22   | 1       | 11       |        | UINT16 | ?? = [4,1]       |
+| 22   | 1       | 11       |        | UINT16 | maximum temp while cooling |
 | 22   | 1       | 12       |        | UINT16 | heating delta/difference |
-| 22   | 1       | 13       |        | UINT16 | ?? temp |
+| 22   | 1       | 13       |        | UINT16 | manual mode target temperature |
 | 22   | 1       | 15       |        | UINT16 | minimum outdoor temp for cooling |
 | 22   | 1       | 16       |        | UINT16 | maximum outdoor temp for heating |
 | 22   | 1       | 17       |        | UINT16 | ?? = [91,1],[94,1] |
@@ -78,9 +78,29 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 22   | 1       | 40       |        | UINT8  | ?? = 0 |
 | 22   | 1       | 41       |        | UINT16 | ?? = [0,0] |
 | 22   | 1       | 42       |        | UINT8  | ?? = 0 |
+| 23   | 1       | 3        |        | UINT16 | heating pump max temp |
+| 23   | 1       | 4        |        | UINT16 | heating pump min temp |
+| 23   | 1       | 5        |        | UINT16 | ?? temp = 20,0°C |
+| 23   | 1       | 6        |        | UINT16 | ?? temp = 5,0°C |
+| 23   | 1       | 7        |        | UINT16 | ?? temp = 60,0°C |
+| 23   | 1       | 8        |        | UINT16 | ?? temp = 0,0°C |
+| 23   | 1       | 9        |        | UINT16 | ?? temp = 0,1°C |
+| 23   | 1       | 10       |        | UINT16 | ?? temp = 1,5°C |
+| 23   | 1       | 11       |        | UINT8  | ?? = 0 |
+| 23   | 1       | 12       |        | UINT16 | ?? = [0,0] |
+| 23   | 1       | 13       |        | UINT16 | ?? = [0,0] |
+| 23   | 1       | 14       |        | UINT16 | ?? = [200,0] |
+| 23   | 1       | 15       |        | UINT8  | ?? = 100 |
+| 23   | 1       | 16       |        | UINT8  | ?? = 100 |
+| 23   | 1       | 17       |        | UINT16 | ?? = [25,0] |
+| 23   | 1       | 18       |        | UINT16 | ?? = [45,0] |
+| 23   | 1       | 19       |        | UINT16 | ?? = [2,0] |
+| 23   | 1       | 32       |        | UINT32 | ?? = [0,0,0,0] |
 | 25   | 1       | 1        |        | UINT8  | ?? = [2,0]      |
 | 26   | 1       | 1        |        | UINT8  | ?? = 0     |
 
+## Special format
+* 23/1/3: min and max value is combined
 
 
 # ComfoClime Sensors
