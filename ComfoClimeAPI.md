@@ -28,7 +28,7 @@ Z = Property
 For example querying /device/.../property/1/1/4 on a ComfoAir device returns the serial number of the device. You always receive data as byte array in decimal representation.
 Changing a value in the app will result in a PUT request to the property. 
 
-The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to the PDO protocol.
+The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to the PDO protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-PDO.md)., where "N" is the number of the sensor.
 
 
 # ComfoClime Nodes
