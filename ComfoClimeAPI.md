@@ -13,6 +13,7 @@ Each device connected to the ComfoNet will also have a device ID (DEVID). This c
 | /system/$UUID$/devices | list of all connected devices | on ComfoNet Bus / CAN Bus |
 | /system/$UUID$/dashboard | data for dashboard in app | temperatures, fanspeeds, ... |
 | /system/$UUID$/alarms | all errors of connected devices | seems to contain history |
+| /system/$UUID$/thermalprofile | reading/setting thermal profile | some values |
 | /device/$DEVID$/property/X/Y/Z | reading properties of device | |
 | /device/$DEVID$/telemetry/N | reading sensor values from device | |
 | /device/$DEVID$/definition | reads some basic data for the device | |
@@ -43,17 +44,40 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | NODE | 1       | 6        |        | UINT8  | Possibly firmware version |
 | NODE | 1       | 7        |        | UINT32 | ?? = [0,120,16,192] |
 | 2    | 1       | 1        |        | UINT8  | ?? = 1      |
-| 2    | 1       | 2        |        | UINT8  | ?? = 0      |
+| 2    | 1       | 2        |        | UINT8  | ?? = 1 |
 | 2    | 1       | 3        |        | UINT8  | ?? = 0      |
 | 2    | 1       | 4        |        | UINT8  | ?? = 0      |
 | 3    | 1       | 1        |        | UINT8  | ?? = 1      |
 | 21   | 1       | 1        |        | UINT8  | ?? = 1      |
 | 21   | 2       | 1        |        | UINT8  | ?? = 1      |
 | 22   | 1       | 1        |        | UINT8  | ?? = 1      |
-| 22   | 1       | 2        |        | UINT8  | ?? = 1      |
-| 22   | 1       | 3        |        | UINT8  | ?? = 1      |
-| 22   | 1       | 4        |        | UINT8  | ?? = [120,0] temperature setting? |
-| 22   | 1       | 5        |        | UINT8  | ?? = [180,0] temperatur setting?      |
+| 22   | 1       | 2        |        | UINT8  | season automatic on/off |
+| 22   | 1       | 3        |        | UINT8  | season select (0 = transitional, 1 = heating, 2 = cooling) |
+| 22   | 1       | 4        |        | UINT16 | curve kneepoint heating |
+| 22   | 1       | 5        |        | UINT16 | curve kneepoint cooling |
+| 22   | 1       | 8        |        | UINT8  | automatic temperature select |
+| 22   | 1       | 9        |        | UINT16 | comfort temp heating |
+| 22   | 1       | 10       |        | UINT16 | comfort temp cooling |
+| 22   | 1       | 11       |        | UINT16 | ?? = [4,1]       |
+| 22   | 1       | 12       |        | UINT16 | heating delta/difference |
+| 22   | 1       | 13       |        | UINT16 | ?? temp |
+| 22   | 1       | 15       |        | UINT16 | minimum outdoor temp for cooling |
+| 22   | 1       | 16       |        | UINT16 | maximum outdoor temp for heating |
+| 22   | 1       | 17       |        | UINT16 | ?? = [91,1],[94,1] |
+| 22   | 1       | 18       |        | UINT8  | ?? = 70     |
+| 22   | 1       | 19       |        | UINT16 | ?? = [232,3] |
+| 22   | 1       | 20       |        | UINT16 | ?? = [50,0] |
+| 22   | 1       | 21       |        | UINT8  | ?? = 0 |
+| 22   | 1       | 23       |        | UINT8  | ?? = 10 |
+| 22   | 1       | 24       |        | UINT16 | ?? = [3,0] |
+| 22   | 1       | 25       |        | UINT8  | ?? = 0 |
+| 22   | 1       | 26       |        | UINT8  | ?? = 1 |
+| 22   | 1       | 27       |        | UINT8  | ?? = 0 |
+| 22   | 1       | 28       |        | UINT8  | ?? = 0 |
+| 22   | 1       | 29       |        | UINT8  | ?? = 0 |
+| 22   | 1       | 40       |        | UINT8  | ?? = 0 |
+| 22   | 1       | 41       |        | UINT16 | ?? = [0,0] |
+| 22   | 1       | 42       |        | UINT8  | ?? = 0 |
 | 25   | 1       | 1        |        | UINT8  | ?? = [2,0]      |
 | 26   | 1       | 1        |        | UINT8  | ?? = 0     |
 
