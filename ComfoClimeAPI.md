@@ -34,6 +34,20 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 
 # ComfoClime Nodes
 
+## Available units
+| DEC  | HEX  | subunit count | name | usage |
+|------|------|---------------|------|-------|
+| 1    | 0x01 | 1             | NODE | General node information |
+| 2    | 0x02 | 1             | ??   | ?? |
+| 3    | 0x03 | 1             | ??   | ?? |
+| 21   | 0x15 | 2             | ??   | ?? |
+| 22   | 0x16 | 1             | TEMPCONFIG | Configuration data (season, temp values, ...) |
+| 23   | 0x17 | 1             | HEATPUMP | Configuration of heatpump |
+| 25   | 0x19 | 1             | ??   | ?? |
+| 26   | 0x1A | 1             | ??   | ?? |
+
+## Properties of subunits
+
 | Unit | SubUnit | Property | Access | Format | Description |
 |------|---------|----------|--------|--------|-------------|
 | NODE | 1       | 1        |        | UINT8  | ?? = 1      |
@@ -98,9 +112,6 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 23   | 1       | 32       |        | UINT32 | ?? = [0,0,0,0] |
 | 25   | 1       | 1        |        | UINT8  | ?? = [2,0]      |
 | 26   | 1       | 1        |        | UINT8  | ?? = 0     |
-
-## Special format
-* 23/1/3: min and max value is combined
 
 
 # ComfoClime Sensors
