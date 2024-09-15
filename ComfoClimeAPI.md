@@ -92,6 +92,7 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 22   | 1       | 40       |        | UINT8  | ?? = 0 |
 | 22   | 1       | 41       |        | UINT16 | ?? = [0,0] |
 | 22   | 1       | 42       |        | UINT8  | ?? = 0 |
+| 23   | 1       | 2        |        | UINT16 | ?? temp = 30,0°C |
 | 23   | 1       | 3        |        | UINT16 | heating pump max temp |
 | 23   | 1       | 4        |        | UINT16 | heating pump min temp |
 | 23   | 1       | 5        |        | UINT16 | ?? temp = 20,0°C |
