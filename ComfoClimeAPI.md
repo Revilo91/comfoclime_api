@@ -58,7 +58,7 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | NODE | 1       | 6        |        | UINT8  | Possibly firmware version |
 | NODE | 1       | 7        |        | UINT32 | ?? = [0,120,16,192] |
 | 2    | 1       | 1        |        | UINT8  | ?? = 1      |
-| 2    | 1       | 2        |        | UINT8  | ?? = 1 |
+| 2    | 1       | 2        |        | UINT8  | ?? = 1, 0 |
 | 2    | 1       | 3        |        | UINT8  | ?? = 0      |
 | 2    | 1       | 4        |        | UINT8  | ?? = 0      |
 | 3    | 1       | 1        |        | UINT8  | ?? = 1      |
@@ -88,7 +88,7 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 22   | 1       | 26       |        | UINT8  | ?? = 1 |
 | 22   | 1       | 27       |        | UINT8  | ?? = 0 |
 | 22   | 1       | 28       |        | UINT8  | ?? = 0 |
-| 22   | 1       | 29       |        | UINT8  | ?? = 0 |
+| 22   | 1       | 29       |        | UINT8  | ComfoClime mode (0 = Comfort, 1 = Power, 2 = Eco) |
 | 22   | 1       | 40       |        | UINT8  | ?? = 0 |
 | 22   | 1       | 41       |        | UINT16 | ?? = [0,0] |
 | 22   | 1       | 42       |        | UINT8  | ?? = 0 |
@@ -102,9 +102,9 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 23   | 1       | 9        |        | UINT16 | ?? temp = 0,1°C |
 | 23   | 1       | 10       |        | UINT16 | ?? temp = 1,5°C |
 | 23   | 1       | 11       |        | UINT8  | ?? = 0 |
-| 23   | 1       | 12       |        | UINT16 | ?? = [0,0] |
+| 23   | 1       | 12       |        | UINT16 | ?? = [0,0],[1,0] |
 | 23   | 1       | 13       |        | UINT16 | ?? = [0,0] |
-| 23   | 1       | 14       |        | UINT16 | ?? = [200,0] |
+| 23   | 1       | 14       |        | UINT16 | ?? = [200,0],[214,1] |
 | 23   | 1       | 15       |        | UINT8  | ?? = 100 |
 | 23   | 1       | 16       |        | UINT8  | ?? = 100 |
 | 23   | 1       | 17       |        | UINT16 | ?? = [25,0] |
@@ -137,7 +137,7 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 4145 | | TPMA temperature |
 | 4146 | | time ?? |
 | 4148 | | temperature ?? |
-| 4149 | | ComfoClime mode ?? (0=Comfort/Eco,2=Power) |
+| 4149 | | ComfoClime mode ?? (off, heating, cooling??) |
 | 4150 | | = 0 ?? |
 | 4151 | | temperature ?? |
 | 4152 | | temperature ?? |
