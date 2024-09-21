@@ -136,18 +136,18 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 4133 | | = [0,0] ?? |
 | 4145 | | TPMA temperature |
 | 4146 | | time ?? |
-| 4148 | | temperature ?? |
-| 4149 | | ComfoClime mode ?? (off, heating, cooling??) |
+| 4148 | | target temperature? |
+| 4149 | | ComfoClime mode (off=0, heating=1, cooling=2) |
 | 4150 | | = 0 ?? |
 | 4151 | | temperature ?? |
 | 4152 | | temperature ?? |
 | 4153 | | temperature ?? [3,0] |
 | 4154 | | indoor temperature |
-| 4193 | | supply temperature ?? |
+| 4193 | | supply temperature |
 | 4194 | | exhaust temperature ?? |
-| 4195 | | supply temperature ?? |
-| 4196 | | temperature ?? |
-| 4197 | | ?? = [38,2] |
+| 4195 | | heat pump supply side temperature ?? |
+| 4196 | | exhaust temperature ?? |
+| 4197 | | heat pump exhaust side temperature ?? |
 | 4198 | | = 0 ?? |
 | 4199 | | = 0 ?? |
 | 4201 | | = [0,0] ?? |
