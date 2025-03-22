@@ -139,8 +139,8 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 4148 | | target temperature? |
 | 4149 | | ComfoClime mode (off=0, heating=1, cooling=2) |
 | 4150 | | = 0 ?? |
-| 4151 | | temperature ?? |
-| 4152 | | temperature ?? |
+| 4151 | | current heating comfort temperature |
+| 4152 | | comfort temp minus difference |
 | 4153 | | temperature ?? [3,0] |
 | 4154 | | indoor temperature |
 | 4193 | | supply temperature |
