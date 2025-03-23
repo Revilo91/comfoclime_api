@@ -146,7 +146,7 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 4193 | | supply temperature |
 | 4194 | | exhaust temperature |
 | 4195 | | heat pump supply side temperature ?? |
-| 4196 | | ?? |
+| 4196 | | exhaust after heatpump |
 | 4197 | | heat pump exhaust side temperature ?? |
 | 4198 | | = 0 ?? |
 | 4199 | | = 0 ?? |
