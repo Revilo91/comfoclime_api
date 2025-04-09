@@ -17,7 +17,7 @@ Each device connected to the ComfoNet will also have a device ID (DEVID). This c
 | /device/$DEVID$/property/X/Y/Z | reading properties of device | |
 | /device/$DEVID$/telemetry/N | reading sensor values from device | |
 | /device/$DEVID$/definition | reads some basic data for the device | |
-| /device/$DEVID$/method/X/Y/Z | setting properties of device | data contains additional byte 0x04 at the beginning | 
+| /device/$DEVID$/method/X/Y/3 | setting properties of device | data contains additional byte Z at the beginning which seems to be the property ID | 
 
 # Reading properties
 
