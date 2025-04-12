@@ -188,3 +188,5 @@ It looks like there is a defrosting cycle with the following status codes:
 - then back to heating for 30s
 - 19 for 2mins
 - heating continues
+
+![screenshot of defrost cycle](defrost_cycle.png "Defrost Cycle")
