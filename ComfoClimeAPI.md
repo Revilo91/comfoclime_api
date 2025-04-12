@@ -168,4 +168,23 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | 4306 | | = [0,0,0,0] ?? |
 
 
+# Heat pump status codes
 
+| code | description                               |
+|------|-------------------------------------------|
+| 0    | heat pump is off |
+| 3    | heating |
+| 19   | ?       |
+| 67   | ?       |
+| 75   | defrost? |
+| 83   | ?       |
+
+It looks like there is a defrosting cycle with the following status codes:
+- first the status switches to 67 for 60s
+- then the status is 83 for 30s
+- then the status switches back to 67 for 30s
+- then the status is 75 for 8,5mins which seems to be the defrost as the supply air temperature gets really cold
+- after that again 67 for 2mins
+- then back to heating for 30s
+- 19 for 2mins
+- heating continues
