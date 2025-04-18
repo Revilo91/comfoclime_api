@@ -173,11 +173,15 @@ The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to t
 | code | description                               |
 |------|-------------------------------------------|
 | 0    | heat pump is off |
+| 1    | starting up / pressure equalization? |
 | 3    | heating |
+| 5    | cooling |
 | 19   | ?       |
 | 67   | ?       |
 | 75   | defrost? |
 | 83   | ?       |
+
+When cooling or heating, the heatpump sometimes seems to start with code 1. Maybe the high/low pressures are equalized during this or valves are turned. I guess it's the second one, as it only occurs, when switching from cooling to heating and vice versa. 
 
 It looks like there is a defrosting cycle with the following status codes:
 - first the status switches to 67 for 60s
