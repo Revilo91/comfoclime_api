@@ -32,6 +32,15 @@ Changing a value in the app will result in a PUT request to the property.
 
 The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to the PDO protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-PDO.md)., where "N" is the number of the sensor.
 
+# Writing properties
+
+Using the ./method endpoint you can write data back to the ComfoNet bus. Unit and subunit are in the Url, the last number is "3" which represents a write request (similar to the ComfoConnect LAN C). 
+Example: Write a value of 17°C to the curve kneepoint heating (22/1/4)
+
+`PUT http://{host}/device/{UUID}/method/22/1/3`
+
+Data: `{ data: [4,170,0] }`
+
 
 # ComfoClime Nodes
 
