@@ -48,8 +48,8 @@ Data: `{ data: [4,170,0] }`
 | DEC  | HEX  | subunit count | name | usage |
 |------|------|---------------|------|-------|
 | 1    | 0x01 | 1             | NODE | General node information |
-| 2    | 0x02 | 1             | ??   | ?? |
-| 3    | 0x03 | 1             | ??   | ?? |
+| 2    | 0x02 | 1             | COMFOBUS | Bus unit |
+| 3    | 0x03 | 1             | ERROROBJECT | ?? |
 | 21   | 0x15 | 2             | ??   | ?? |
 | 22   | 0x16 | 1             | TEMPCONFIG | Configuration data (season, temp values, ...) |
 | 23   | 0x17 | 1             | HEATPUMP | Configuration of heatpump |
@@ -60,18 +60,19 @@ Data: `{ data: [4,170,0] }`
 
 | Unit | SubUnit | Property | Access | Format | Description |
 |------|---------|----------|--------|--------|-------------|
-| NODE | 1       | 1        |        | UINT8  | ?? = 1      |
-| NODE | 1       | 2        |        | UINT8  | ?? = 20      |
-| NODE | 1       | 3        |        | UINT8  | ?? = 1      |
-| NODE | 1       | 4        |        | STRING | Serial number MBE...  |
-| NODE | 1       | 5        |        | UINT8  | ?? = 1      |
-| NODE | 1       | 6        |        | UINT8  | Possibly firmware version |
-| NODE | 1       | 7        |        | UINT32 | ?? = [0,120,16,192] |
-| 2    | 1       | 1        |        | UINT8  | ?? = 1      |
-| 2    | 1       | 2        |        | UINT8  | ?? = 1, 0 |
-| 2    | 1       | 3        |        | UINT8  | ?? = 0      |
-| 2    | 1       | 4        |        | UINT8  | ?? = 0      |
-| 3    | 1       | 1        |        | UINT8  | ?? = 1      |
+| NODE | 1       | 1        | rw     | UINT8  | Zone = 1      |
+| NODE | 1       | 2        | ro     | UINT8  | ProductID = 20 |
+| NODE | 1       | 3        | ro     | UINT8  | ProductVariant = 1 |
+| NODE | 1       | 4        | ro     | STRING | Serial number MBE...  |
+| NODE | 1       | 5        | ro     | UINT8  | Hardware Version =1 |
+| NODE | 1       | 6        | ro     | UINT8  | firmware version |
+| NODE | 1       | 7        | ro     | UINT32 | CNObjsVersion?? |
+| NODE | 1       | 20       | rw     | STRING | name |
+| COMFOBUS | 1       | 1        |        | UINT8  | Zone = 1 |
+| COMFOBUS | 1       | 2        |        | UINT8  | BusOffCount |
+| COMFOBUS | 1       | 3        |        | UINT8  | CanReceiveErrorCount = 0 |
+| COMFOBUS | 1       | 4        |        | UINT8  | CanTransmitErrorCount = 0 |
+| ERROROBJECT | 1       | 1        |        | UINT8  | Zone = 1 |
 | 21   | 1       | 1        |        | UINT8  | ?? = 1      |
 | 21   | 2       | 1        |        | UINT8  | ?? = 1      |
 | 22   | 1       | 1        |        | UINT8  | ?? = 1      |
