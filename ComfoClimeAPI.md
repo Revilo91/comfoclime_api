@@ -14,6 +14,7 @@ Each device connected to the ComfoNet will also have a device ID (DEVID). This c
 | /system/$UUID$/devices | list of all connected devices | on ComfoNet Bus / CAN Bus |
 | /system/$UUID$/dashboard | data for dashboard in app | temperatures, fanspeeds, ... |
 | /system/$UUID$/alarms | all errors of connected devices | seems to contain history |
+| /system/$UUID$/scheduler | list of schedules | |
 | /system/$UUID$/thermalprofile | reading/setting thermal profile | some values |
 | /device/$DEVID$/property/X/Y/Z | reading properties of device | |
 | /device/$DEVID$/telemetry/N | reading sensor values from device | |
