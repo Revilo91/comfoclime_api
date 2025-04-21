@@ -11,6 +11,8 @@ Each device connected to the ComfoNet will also have a device ID (DEVID). This c
 | /monitoring/ping | UUID of interface, uptime, timestamp | retreived on first connect |
 | /monitoring/health | some system data about memory and rx/tx | |
 | /system/systems | location and connection of ComfoClime | |
+| /system/time | current time of the device | |
+| /wifi/list | the wifi the unit is connected to | |
 | /system/$UUID$/devices | list of all connected devices | on ComfoNet Bus / CAN Bus |
 | /system/$UUID$/dashboard | data for dashboard in app | temperatures, fanspeeds, ... |
 | /system/$UUID$/alarms | all errors of connected devices | seems to contain history |
