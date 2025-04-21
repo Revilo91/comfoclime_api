@@ -9,6 +9,7 @@ Each device connected to the ComfoNet will also have a device ID (DEVID). This c
 | API endpoint | function | additional information |
 |--------------|----------|------------------------|
 | /monitoring/ping | UUID of interface, uptime, timestamp | retreived on first connect |
+| /monitoring/health | some system data about memory and rx/tx | |
 | /system/systems | location and connection of ComfoClime | |
 | /system/$UUID$/devices | list of all connected devices | on ComfoNet Bus / CAN Bus |
 | /system/$UUID$/dashboard | data for dashboard in app | temperatures, fanspeeds, ... |
