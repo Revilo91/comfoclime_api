@@ -166,12 +166,12 @@ Data: `{ data: [4,170,0] }`
 | 4198 | | = 0 ?? |
 | 4199 | | = 0 ?? |
 | 4201 | | current power |
-| 4202 | | = [52,1] ?? expansion valve? |
-| 4203 | | = [0,0] ?? |
+| 4202 | | = [52,1] ?? expansion valve? compressor frequency? |
+| 4203 | | = [0,0] ?? expansion valve? compressor frequency? |
 | 4204 | | = [0,0] ?? |
 | 4205 | | = [81,0] ?? |
 | 4206 | | = [5,0] ?? |
-| 4207 | | = [2,0] ?? |
+| 4207 | | = [2,0] ?? 4-way valve position? |
 | 4208 | | = [200,0] ?? |
 | 4209 | | = 0 ?? |
 | 4210 | | = 0 ?? |
