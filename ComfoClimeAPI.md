@@ -166,10 +166,10 @@ Data: `{ data: [4,170,0] }`
 | 4198 | | = 0 ?? = 50 ?? |
 | 4199 | | = 0 ?? |
 | 4201 | | current power |
-| 4202 | | = [52,1] ?? expansion valve? compressor frequency? |
-| 4203 | | = [0,0] ?? expansion valve? compressor frequency? |
+| 4202 | | = [52,1] ?? high pressure / hot side |
+| 4203 | | = [0,0] ?? expansion valve? high on start (>30%), then stabilizes at 20-30%, lower when reducing fanspeed |
 | 4204 | | = [0,0] ?? |
-| 4205 | | = [81,0] ?? |
+| 4205 | | = [81,0] ?? low pressure / cold side |
 | 4206 | | = [5,0] ?? |
 | 4207 | | = [2,0] ?? 4-way valve position? |
 | 4208 | | = [200,0] ?? |
