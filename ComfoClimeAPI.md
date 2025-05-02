@@ -200,7 +200,7 @@ The status value seems to be bit matrix. Without official documentation this can
 | bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |-----|---|---|---|---|---|---|---|---|
 | val |128| 64| 32| 16| 8 | 4 | 2 | 1 |
-| meaning | ?? | ?? | ?? | ?? | ?? | cooling | heating | running |
+| meaning | ?? | anti-freeze? | ?? | ?? | ?? | cooling | heating | running |
 
 When cooling or heating, the heatpump sometimes seems to start with code 1.
 
