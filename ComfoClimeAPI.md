@@ -160,10 +160,10 @@ Data: `{ data: [4,170,0] }`
 | 4154 | | indoor temperature |
 | 4193 | | supply temperature |
 | 4194 | | exhaust temperature |
-| 4195 | | supply temperature after heatpump|
-| 4196 | | exhaust after heatpump |
-| 4197 | | heat pump exhaust side temperature ?? |
-| 4198 | | = 0 ?? |
+| 4195 | | supply coil temperature |
+| 4196 | | exhaust coil temperature |
+| 4197 | | ?? |
+| 4198 | | = 0 ?? = 50 ?? |
 | 4199 | | = 0 ?? |
 | 4201 | | current power |
 | 4202 | | = [52,1] ?? expansion valve? compressor frequency? |
