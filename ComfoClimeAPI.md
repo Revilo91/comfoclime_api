@@ -184,19 +184,25 @@ Data: `{ data: [4,170,0] }`
 
 # Heat pump status codes
 
-| code | description                               |
-|------|-------------------------------------------|
-| 0    | heat pump is off |
-| 1    | starting up / pressure equalization? |
-| 3    | heating |
-| 5    | cooling |
-| 19   | ?       |
-| 21   | ?       |
-| 67   | ?       |
-| 75   | defrost? |
-| 83   | ?       |
+| code | description                               | binary | 
+|------|-------------------------------------------|--------|
+| 0    | heat pump is off | 0000 0000 |
+| 1    | starting up      | 0000 0001 |
+| 3    | heating          | 0000 0011 |
+| 5    | cooling          | 0000 0101 |
+| 19   | ?                | 0001 0011 |
+| 21   | ?                | 0001 0101 |
+| 67   | ?                | 0100 0011 |
+| 75   | ?                | 0100 1011 |
+| 83   | ?                | 0101 0011 |
 
-When cooling or heating, the heatpump sometimes seems to start with code 1. Maybe the high/low pressures are equalized during this or valves are turned. I guess it's the second one, as it only occurs, when switching from cooling to heating and vice versa. 
+The status value seems to be bit matrix. Without official documentation this can be challenging to find out the meaning. Maybe it's like this:
+| bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+|-----|---|---|---|---|---|---|---|---|
+| val |128| 64| 32| 16| 8 | 4 | 2 | 1 |
+| meaning | ?? | ?? | ?? | ?? | ?? | cooling | heating | running |
+
+When cooling or heating, the heatpump sometimes seems to start with code 1.
 
 During cooling after quite a time the status switches to 19 for a short time. It could be some kind of defrost, although the supply coil then has an airflow with > 15°C and active defrosting should not be necessary. The supply temperature even got colder during this mode, so this could have an other reason.
 
