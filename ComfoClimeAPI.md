@@ -162,7 +162,7 @@ Data: `{ data: [4,170,0] }`
 | 4194 | | exhaust temperature |
 | 4195 | | supply coil temperature |
 | 4196 | | exhaust coil temperature |
-| 4197 | | ?? |
+| 4197 | | compressor temperature? compressor target temperature? |
 | 4198 | | = 0 ?? = 50 ?? |
 | 4199 | | = 0 ?? |
 | 4201 | | current power |
@@ -191,11 +191,14 @@ Data: `{ data: [4,170,0] }`
 | 3    | heating |
 | 5    | cooling |
 | 19   | ?       |
+| 21   | ?       |
 | 67   | ?       |
 | 75   | defrost? |
 | 83   | ?       |
 
 When cooling or heating, the heatpump sometimes seems to start with code 1. Maybe the high/low pressures are equalized during this or valves are turned. I guess it's the second one, as it only occurs, when switching from cooling to heating and vice versa. 
+
+During cooling after quite a time the status switches to 19 for a short time. It could be some kind of defrost, although the supply coil then has an airflow with > 15°C and active defrosting should not be necessary. The supply temperature even got colder during this mode, so this could have an other reason.
 
 It looks like there is a defrosting cycle with the following status codes:
 - first the status switches to 67 for 60s
