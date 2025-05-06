@@ -92,18 +92,18 @@ Data: `{ data: [4,170,0] }`
 | 22   | 1       | 13       |        | UINT16 | manual mode target temperature |
 | 22   | 1       | 15       |        | UINT16 | minimum outdoor temp for cooling |
 | 22   | 1       | 16       |        | UINT16 | maximum outdoor temp for heating |
-| 22   | 1       | 17       |        | UINT16 | ?? = [91,1],[94,1] |
-| 22   | 1       | 18       |        | UINT8  | ?? = 70     |
+| 22   | 1       | 17       |        | UINT16 | [91,1],[94,1] maximum TPMA |
+| 22   | 1       | 18       |        | UINT8  | ?? = 70 alpha TPMA ?? |
 | 22   | 1       | 19       |        | UINT16 | ?? = [232,3] |
 | 22   | 1       | 20       |        | UINT16 | ?? = [50,0] |
-| 22   | 1       | 21       |        | UINT8  | ?? = 0 |
+| 22   | 1       | 21       |        | UINT8  | ?? = 0 force comfoclime off? |
 | 22   | 1       | 23       |        | UINT8  | ?? = 10 |
 | 22   | 1       | 24       |        | UINT16 | ?? = [3,0] |
 | 22   | 1       | 25       |        | UINT8  | ?? = 0 |
-| 22   | 1       | 26       |        | UINT8  | ?? = 1 |
-| 22   | 1       | 27       |        | UINT8  | ?? = 0 |
-| 22   | 1       | 28       |        | UINT8  | ?? = 0 |
-| 22   | 1       | 29       |        | UINT8  | ComfoClime mode (0 = Comfort, 1 = Power, 2 = Eco) |
+| 22   | 1       | 26       |        | UINT8  | ?? = 1 cool freq enable? |
+| 22   | 1       | 27       |        | UINT8  | ?? = 0 heat freq enable? |
+| 22   | 1       | 28       |        | UINT8  | ?? = 0 season profile? |
+| 22   | 1       | 29       |        | UINT8  | ComfoClime temp profile (0 = Comfort, 1 = Power, 2 = Eco) |
 | 22   | 1       | 40       |        | UINT8  | ?? = 0 |
 | 22   | 1       | 41       |        | UINT16 | ?? = [0,0] |
 | 22   | 1       | 42       |        | UINT8  | ?? = 0 |
