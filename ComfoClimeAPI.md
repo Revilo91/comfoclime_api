@@ -6,37 +6,37 @@ The interface has a UUID, which can be polled with the first two API requests. A
 
 ### Device ID
 
-Each device connected to the ComfoNet also have a device ID (DEVID). This can be used by querying data from the individual device. Some device don't have a device ID (for example the option box). DEVID is NULL in these cases.
+Each device connected to the ComfoNet bus also has a device ID (`DEVID`). This can be used to query data from the individual device. Some devices don't have a device ID (for example the option box). In such cases, `DEVID` is `NULL`.
 
 
 ## Known API Endpoints 
 
-| API endpoint | function | additional information |
+| API endpoint | Function | Additional information |
 |--------------|----------|------------------------|
-| /monitoring/ping | UUID of interface, uptime, timestamp | retreived on first connect |
-| /monitoring/health | some system data about memory and rx/tx | |
-| /system/systems | location and connection of ComfoClime | |
-| /system/time | current time of the device | |
-| /wifi/list | the wifi the unit is connected to | |
-| /system/$UUID$/devices | list of all connected devices | on ComfoNet Bus / CAN Bus |
-| /system/$UUID$/dashboard | data for dashboard in app | temperatures, fanspeeds, ... |
-| /system/$UUID$/alarms | all errors of connected devices | seems to contain history |
-| /system/$UUID$/scheduler | list of schedules | |
-| /system/$UUID$/thermalprofile | reading/setting thermal profile | some values |
-| /device/$DEVID$/property/X/Y/Z | reading properties of device | |
-| /device/$DEVID$/telemetry/N | reading sensor values from device | |
-| /device/$DEVID$/definition | reads some basic data for the device | |
-| /device/$DEVID$/method/X/Y/3 | setting properties of device | data contains additional byte Z at the beginning which seems to be the property ID | 
+| `/monitoring/ping` | UUID of interface, uptime, timestamp | retreived on first connect |
+| `/monitoring/health` | some system data about memory and rx/tx | |
+| `/system/systems` | location and connection of ComfoClime | |
+| `/system/time` | current time of the device | |
+| `/wifi/list` | the wifi the unit is connected to | |
+| `/system/$UUID$/devices` | list of all connected devices | on ComfoNet bus / CAN bus |
+| `/system/$UUID$/dashboard` | data for dashboard in app | temperatures, fanspeeds, ... |
+| `/system/$UUID$/alarms` | all errors of connected devices | seems to contain history |
+| `/system/$UUID$/scheduler` | list of schedules | |
+| `/system/$UUID$/thermalprofile` | reading/setting thermal profile | some values |
+| `/device/$DEVID$/property/X/Y/Z` | reading properties of device | |
+| `/device/$DEVID$/telemetry/N` | reading sensor values from device | |
+| `/device/$DEVID$/definition` | reads some basic data for the device | |
+| `/device/$DEVID$/method/X/Y/3` | setting properties of device | data contains additional byte Z at the beginning which seems to be the property ID |
 
 ### API Endpoint /system/$UUID$/dashboard
 
-API endpoint:
+#### API Endpoint
 
 ```http
 GET /system/$UUID$/dashboard
 ```
 
-Returned JSON (example from ComfoClime firmware version `1.5.0`):
+#### Returned JSON
 
 ```json
 {
@@ -56,27 +56,29 @@ Returned JSON (example from ComfoClime firmware version `1.5.0`):
 }
 ```
 
+The example above is from ComfoClime unit with firmware version `1.5.0`.
+
 #### Fields
 
-| Key name in JSON   | Description                                                  |
-| ------------------ | ------------------------------------------------------------ |
-| indoorTemperature  | Temperature of the extracted air from inside the house.      |
-| outdoorTemperature | Temperature of the outside air.                              |
-| exhaustAirFlow     | Volume of the air blown out of the house per time unit.      |
-| supplyAirFlow      | Volume of the air blown into the house per time unit.        |
-| fanSpeed           | Fan speed of the ComfoAir unit. This may be overridden by the ComfoClime device. |
-| seasonProfile      | Current season profile (not available in the ComfoClime app). |
-| temperatureProfile | Current temperature profile (eco, comfort, power).           |
-| season             | Current season (heating, cooling, transitional).             |
-| schedule           | Current schedule ID.                                         |
-| status             | Unknown.                                                     |
-| heatPumpStatus     | Bitfield indicating the heat pump's status (see below).      |
-| hpStandby          | Device power: off or on.                                     |
-| freeCoolingEnabled | Current "free cooling" status (using cool outside air with the bypass at 0% instead of active cooling). |
+| Key name in JSON     | Description                                                  |
+| -------------------- | ------------------------------------------------------------ |
+| `indoorTemperature`  | Temperature of the extracted air from inside the house.      |
+| `outdoorTemperature` | Temperature of the outside air.                              |
+| `exhaustAirFlow`     | Volume of the air blown out of the house per time unit.      |
+| `supplyAirFlow`      | Volume of the air blown into the house per time unit.        |
+| `fanSpeed`           | Fan speed of the ComfoAir unit. This may be overridden by the ComfoClime device. |
+| `seasonProfile`      | Current season profile (not available in the ComfoClime app). |
+| `temperatureProfile` | Current temperature profile (eco, comfort, power).           |
+| `season`             | Current season (heating, cooling, transitional).             |
+| `schedule`           | Current schedule ID.                                         |
+| `status`             | Unknown.                                                     |
+| `heatPumpStatus`     | Bitfield indicating the heat pump's status (see below).      |
+| `hpStandby`          | Device power: off or on.                                     |
+| `freeCoolingEnabled` | Current "free cooling" status (using cool outside air with the bypass at 0% instead of active cooling). |
 
 ## Reading properties
 
-The `./property` endpoint reads values from the ComfoNet bus similiar to the RMI Protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-RMI.md).
+The `./property` endpoint reads values from the ComfoNet bus similiar to the RMI Protocol (as described [here](https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-RMI.md)).
 
 The address translates like:
 
@@ -92,7 +94,7 @@ For example, querying `/device/.../property/1/1/4` on a ComfoAir device returns 
 
 Changing a value in the app results in a PUT request to the property. 
 
-The `./telemetry` endpoint reads sensor values from the ComfoNet bus similiar to the PDO protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-PDO.md), where `N` is the number of the sensor.
+The `./telemetry` endpoint reads sensor values from the ComfoNet bus similiar to the PDO protocol (as described [here](https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-PDO.md)), where `N` is the number of the sensor.
 
 ## Writing properties
 
