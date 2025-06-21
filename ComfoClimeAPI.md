@@ -1,10 +1,15 @@
-# IDs
+## IDs
 
-The interface has a UUID, which can be polled with the first two API requests. All "/system/..." requests will then need the UUID of this interface.
-Each device connected to the ComfoNet will also have a device ID (DEVID). This can be used by querying data from the individual device. Some device don't have a device ID (for example the option box). DEVID is NULL in these cases.
+### UUID
+
+The interface has a UUID, which can be polled with the first two API requests. All `/system/...` requests need the UUID of this interface. In the case of the ComfoClime unit, the UUID is identical to the device's serial number (as displayed in the ComfoClime app, for example).
+
+### Device ID
+
+Each device connected to the ComfoNet also have a device ID (DEVID). This can be used by querying data from the individual device. Some device don't have a device ID (for example the option box). DEVID is NULL in these cases.
 
 
-# Known API Endpoints 
+## Known API Endpoints 
 
 | API endpoint | function | additional information |
 |--------------|----------|------------------------|
@@ -23,32 +28,92 @@ Each device connected to the ComfoNet will also have a device ID (DEVID). This c
 | /device/$DEVID$/definition | reads some basic data for the device | |
 | /device/$DEVID$/method/X/Y/3 | setting properties of device | data contains additional byte Z at the beginning which seems to be the property ID | 
 
-# Reading properties
+### API Endpoint /system/$UUID$/dashboard
 
-The ./property endpoint reads values from the ComfoNet bus similiar to the RMI Protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-RMI.md). 
+API endpoint:
+
+```http
+GET /system/$UUID$/dashboard
+```
+
+Returned JSON (example from ComfoClime firmware version `1.5.0`):
+
+```json
+{
+   "indoorTemperature": 25.4,
+   "outdoorTemperature": 27.8,
+   "exhaustAirFlow": 485,
+   "supplyAirFlow": 484,
+   "fanSpeed": 2,
+   "seasonProfile": 0,
+   "temperatureProfile": 0,
+   "season": 2,
+   "schedule": 0,
+   "status": 1,
+   "heatPumpStatus": 5,
+   "hpStandby": false,
+   "freeCoolingEnabled": false
+}
+```
+
+#### Fields
+
+| Key name in JSON   | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| indoorTemperature  | Temperature of the extracted air from inside the house.      |
+| outdoorTemperature | Temperature of the outside air.                              |
+| exhaustAirFlow     | Volume of the air blown out of the house per time unit.      |
+| supplyAirFlow      | Volume of the air blown into the house per time unit.        |
+| fanSpeed           | Fan speed of the ComfoAir unit. This may be overridden by the ComfoClime device. |
+| seasonProfile      | Current season profile (not available in the ComfoClime app). |
+| temperatureProfile | Current temperature profile (eco, comfort, power).           |
+| season             | Current season (heating, cooling, transitional).             |
+| schedule           | Current schedule ID.                                         |
+| status             | Unknown.                                                     |
+| heatPumpStatus     | Bitfield indicating the heat pump's status (see below).      |
+| hpStandby          | Device power: off or on.                                     |
+| freeCoolingEnabled | Current "free cooling" status (using cool outside air with the bypass at 0% instead of active cooling). |
+
+## Reading properties
+
+The `./property` endpoint reads values from the ComfoNet bus similiar to the RMI Protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-RMI.md).
+
 The address translates like:
+
+```
 /device/$DEVID$/property/X/Y/Z
+where:
 X = Unit
 Y = Subunit
 Z = Property
-For example querying /device/.../property/1/1/4 on a ComfoAir device returns the serial number of the device. You always receive data as byte array in decimal representation.
-Changing a value in the app will result in a PUT request to the property. 
+```
 
-The ./telemetry endpoint reads sensor values from the ComfoNet bus similiar to the PDO protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-PDO.md)., where "N" is the number of the sensor.
+For example, querying `/device/.../property/1/1/4` on a ComfoAir device returns the serial number of the device. You always receive data as byte array in decimal representation.
 
-# Writing properties
+Changing a value in the app results in a PUT request to the property. 
 
-Using the ./method endpoint you can write data back to the ComfoNet bus. Unit and subunit are in the Url, the last number is "3" which represents a write request (similar to the ComfoConnect LAN C). 
-Example: Write a value of 17°C to the curve kneepoint heating (22/1/4)
+The `./telemetry` endpoint reads sensor values from the ComfoNet bus similiar to the PDO protocol (as described in https://github.com/michaelarnauts/aiocomfoconnect/blob/master/docs/PROTOCOL-PDO.md), where `N` is the number of the sensor.
 
-`PUT http://{host}/device/{UUID}/method/22/1/3`
+## Writing properties
 
-Data: `{ data: [4,170,0] }`
+Using the `./method` endpoint you can write data back to the ComfoNet bus. Unit and subunit are in the URL, the last number is `3`, which represents a write request (similar to the ComfoConnect LAN C). 
+
+**Example:** Write a value of `17°C` to the curve kneepoint heating (`22/1/4`)
+
+```http
+PUT http://{host}/device/{UUID}/method/22/1/3
+```
+
+Data:
+
+```json
+{ data: [4,170,0] }
+```
 
 
-# ComfoClime Nodes
+## ComfoClime Nodes
 
-## Available units
+### Available units
 | DEC  | HEX  | subunit count | name | usage |
 |------|------|---------------|------|-------|
 | 1    | 0x01 | 1             | NODE | General node information |
@@ -60,7 +125,7 @@ Data: `{ data: [4,170,0] }`
 | 25   | 0x19 | 1             | ??   | ?? |
 | 26   | 0x1A | 1             | ??   | ?? |
 
-## Properties of subunits
+### Properties of subunits
 
 | Unit | SubUnit | Property | Access | Format | Description |
 |------|---------|----------|--------|--------|-------------|
@@ -130,7 +195,7 @@ Data: `{ data: [4,170,0] }`
 | 26   | 1       | 1        |        | UINT8  | ?? = 0     |
 
 
-# ComfoClime Sensors
+## ComfoClime Sensors
 
 | Telemetry number | Format | Description |
 |------------------|--------|-------------|
@@ -182,7 +247,7 @@ Data: `{ data: [4,170,0] }`
 | 4306 | | = [0,0,0,0] ?? |
 
 
-# Heat pump status codes
+## Heat pump status codes
 
 | code | description                               | binary | 
 |------|-------------------------------------------|--------|
@@ -197,7 +262,7 @@ Data: `{ data: [4,170,0] }`
 | 75   | ?                | 0100 1011 |
 | 83   | ?                | 0101 0011 |
 
-The status value seems to be bit matrix. Without official documentation this can be challenging to find out the meaning. Maybe it's like this:
+The status value seems to be bit matrix. Without official documentation, it can be challenging to find out the meaning. Maybe it's like this:
 | bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |-----|---|---|---|---|---|---|---|---|
 | val |128| 64| 32| 16| 8 | 4 | 2 | 1 |
@@ -205,16 +270,16 @@ The status value seems to be bit matrix. Without official documentation this can
 
 When cooling or heating, the heatpump sometimes seems to start with code 1.
 
-During cooling after quite a time the status switches to 19 for a short time. It could be some kind of defrost, although the supply coil then has an airflow with > 15°C and active defrosting should not be necessary. The supply temperature even got colder during this mode, so this could have an other reason.
+During cooling, after quite a time the status switches to `19` for a short time. It could be some kind of defrost, although the supply coil then has an airflow with > 15°C and active defrosting should not be necessary. The supply temperature even got colder during this mode, so this could have an other reason.
 
 It looks like there is a defrosting cycle with the following status codes:
-- first the status switches to 67 for 60s
-- then the status is 83 for 30s
-- then the status switches back to 67 for 30s
-- then the status is 75 for 8,5mins which seems to be the defrost as the supply air temperature gets really cold
-- after that again 67 for 2mins
+- first the status switches to `67` for 60s
+- then the status is `83` for 30s
+- then the status switches back to `67` for 30s
+- then the status is `75` for 8,5mins which seems to be the defrost as the supply air temperature gets really cold
+- after that again `67` for 2mins
 - then back to heating for 30s
-- 19 for 2mins
+- `19` for 2mins
 - heating continues
 
 ![screenshot of defrost cycle](defrost_cycle.png "Defrost Cycle")
