@@ -36,6 +36,17 @@ Each device connected to the ComfoNet bus also has a device ID (`DEVID`). This c
 GET /system/$UUID$/dashboard
 ```
 
+#### Curl Example
+
+```bash
+curl IP_ADDRESS/system/UUID/dashboard
+```
+
+When using the above cvommand, make sure to make the following replacements:
+
+- `IP_ADDRESS`: ip address or hostname of your ComfoClime unit.
+- `UUID`: serial number of your ComfoClime unit (as displayed in the ComfoClime app).
+
 #### Returned JSON
 
 ```json
