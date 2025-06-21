@@ -28,6 +28,13 @@ Each device connected to the ComfoNet bus also has a device ID (`DEVID`). This c
 | `/device/$DEVID$/definition` | reads some basic data for the device | |
 | `/device/$DEVID$/method/X/Y/3` | setting properties of device | data contains additional byte Z at the beginning which seems to be the property ID |
 
+## API Endpoint Documentation
+
+**Notes:** When using the commands in the examples below, make sure to make the following replacements:
+
+- `IP_ADDRESS`: ip address or hostname of your ComfoClime unit.
+- `UUID`: serial number of your ComfoClime unit (as displayed in the ComfoClime app).
+
 ### API Endpoint /system/$UUID$/dashboard
 
 #### API Endpoint
@@ -41,11 +48,6 @@ GET /system/$UUID$/dashboard
 ```bash
 curl IP_ADDRESS/system/UUID/dashboard
 ```
-
-When using the above cvommand, make sure to make the following replacements:
-
-- `IP_ADDRESS`: ip address or hostname of your ComfoClime unit.
-- `UUID`: serial number of your ComfoClime unit (as displayed in the ComfoClime app).
 
 #### Returned JSON
 
@@ -86,6 +88,286 @@ The example above is from ComfoClime unit with firmware version `1.5.0`.
 | `heatPumpStatus`     | Bitfield indicating the heat pump's status (see below).      |
 | `hpStandby`          | Device power: off or on.                                     |
 | `freeCoolingEnabled` | Current "free cooling" status (using cool outside air with the bypass at 0% instead of active cooling). |
+
+### API Endpoint /system/$UUID$/devices
+
+#### API Endpoint
+
+```http
+GET /system/$UUID$/devices
+```
+
+#### Curl Example
+
+```bash
+curl IP_ADDRESS/system/UUID/devices
+```
+
+#### Returned JSON
+
+```json
+{
+   "devices": [
+      {
+         "uuid": "SIT123123123",
+         "modelTypeId": 1,
+         "variant": 3,
+         "zoneId": 1,
+         "@modelType": "ComfoAirQ 600",
+         "name": "ComfoAirQ 600",
+         "displayName": "ComfoAirQ 600",
+         "fanSpeed": 2
+      },
+      {
+         "uuid": "MBE123123123",
+         "modelTypeId": 20,
+         "variant": 0,
+         "zoneId": 1,
+         "@modelType": "ComfoClime 36",
+         "name": "ComfoClime 36",
+         "displayName": "ComfoClime 36",
+         "version": "R1.5.0",
+         "temperatureProfile": 0
+      },
+      {
+         "uuid": "ENG123123123",
+         "modelTypeId": 222,
+         "variant": 0,
+         "zoneId": 255,
+         "@modelType": "ComfoHub",
+         "name": "ComfoHub",
+         "displayName": "ComfoHub"
+      }
+   ]
+}
+```
+
+The example above is from an installation with ComfoAir, ComfoClime, and ComfoConnect Pro units.
+
+#### Fields
+
+| Key name in JSON     | Description                                                  |
+| -------------------- | ------------------------------------------------------------ |
+| `uuid`               | UUID = serial number of the device.                          |
+| `modelTypeId`        | DEVID (?)                                                    |
+| `variant`            | Unknown                                                      |
+| `zoneId`             | Unkown                                                       |
+| `@modelType`         | Vendor model type                                            |
+| `name`               | Vendor model name                                            |
+| `displayName`        | Vendor model display name                                    |
+| `fanSpeed`           | Fan speed setting (peculiar to find that here as the value is already returned by the dashboard API) |
+| `version`            | Firmware version                                             |
+| `temperatureProfile` | Temperature profile (again, peculiar to find that here as the value is already returned by the dashboard API) |
+
+### API Endpoint /system/$UUID$/thermalprofile
+
+#### API Endpoint
+
+```http
+GET /system/$UUID$/thermalprofile
+```
+
+#### Curl Example
+
+```bash
+curl IP_ADDRESS/system/UUID/thermalprofile
+```
+
+#### Returned JSON
+
+```json
+{
+   "season": {
+      "status": 1,
+      "season": 2,
+      "heatingThresholdTemperature": 14.0,
+      "coolingThresholdTemperature": 17.0
+   },
+   "temperature": {
+      "status": 1,
+      "manualTemperature": 26.0
+   },
+   "temperatureProfile": 0,
+   "heatingThermalProfileSeasonData": {
+      "comfortTemperature": 21.5,
+      "kneePointTemperature": 12.5,
+      "reductionDeltaTemperature": 1.5
+   },
+   "coolingThermalProfileSeasonData": {
+      "comfortTemperature": 24.0,
+      "kneePointTemperature": 18.0,
+      "temperatureLimit": 26.0
+   }
+}
+```
+
+The example above is from an installation with ComfoAir, ComfoClime, and ComfoConnect Pro units.
+
+#### Fields
+
+| Key name in JSON                                             | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `status`                                                     | Unknown                                                      |
+| `season.season`                                              | `0`: transitional<br />`1`: heating<br />`2`: cooling<br />  |
+| `season.heatingThresholdTemperature`                         | Heating threshold temperature. Not used when season selection is set to auto. |
+| `season.coolingThresholdTemperature`                         | Cooling threshold temperature. Not used when season selection is set to auto. |
+| `temperature.manualTemperature`                              | Manual comfort temperature. Not used when season selection is set to auto. |
+| `temperatureProfile`                                         | Current temperature profile (eco, comfort, power).           |
+| `heatingThermalProfileSeasonData.<br />comfortTemperature`   | Heating comfort temperature.                                 |
+| `heatingThermalProfileSeasonData.<br />kneePointTemperature` | Heating curve knee point.                                    |
+| `heatingThermalProfileSeasonData.<br />reductionDeltaTemperature` | Heating reduction delta.                                     |
+| `coolingThermalProfileSeasonData.<br />comfortTemperature`   | Cooling comfort temperature.                                 |
+| `coolingThermalProfileSeasonData.<br />kneePointTemperature` | Cooling curve knee point.                                    |
+| `coolingThermalProfileSeasonData.<br />temperatureLimit`     | Cooling maximum temperature.                                 |
+
+### API Endpoint /system/$UUID$/alarms
+
+#### API Endpoint
+
+```http
+GET /system/$UUID$/alarms
+```
+
+#### Curl Example
+
+```bash
+curl IP_ADDRESS/system/UUID/alarms
+```
+
+#### Returned JSON
+
+```json
+{
+   "devices": [
+      {
+         "uuid": "SIT123123123",
+         "modelTypeId": 1,
+         "variant": 3,
+         "zoneId": 1,
+         "errors": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+         ]
+      },
+      {
+         "uuid": "MBE123123123",
+         "modelTypeId": 20,
+         "variant": 0,
+         "zoneId": 1,
+         "errors": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+         ]
+      },
+      {
+         "uuid": "ENG123123123",
+         "modelTypeId": 222,
+         "variant": 0,
+         "zoneId": 255,
+         "errors": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+         ]
+      }
+   ]
+}
+```
+
+The example above is from an installation with ComfoAir, ComfoClime, and ComfoConnect Pro units.
+
+#### Fields
+
+Apparently this contains a list of errors/alarms/notifications for each device. No additional information is available at this point.
 
 ## Reading properties
 
