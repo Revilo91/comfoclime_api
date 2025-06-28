@@ -1,0 +1,370 @@
+{
+  "data": [
+    {
+      "modelTypeId": 20,
+      "alarms": [
+        {
+          "id": 1,
+          "code": "CCQ_WRONG_MODEL_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Wrong selection on the rotary switch"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "code": "CCQ_CAQ_COMM_ERR",
+          "reset": 1,
+          "description": [
+            {
+              "en": "CAQ Communication error"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "code": "CCQ_CAQ_PROFILE_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Cannot set CAQ temperature profile"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "code": "CCQ_CAQ_SETPOINT_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Cannot set CAQ temperature setpoint"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "code": "CCQ_CAQ_MODE_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Cannot set CAQ temperature mode"
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "code": "CCQ_CAQ_COOL_LIMIT_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Cannot set CAQ cooling season limit"
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "code": "CCQ_CAQ_HEAT_LIMIT_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Cannot set CAQ heating season limit"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "code": "CCQ_CAQ_ORIENTATION_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Cannot set CAQ orientation"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "code": "CCQ_CAQ_NOT_COMMISSIONED_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "CAQ is not commissioned"
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "code": "CCQ_CAQ_ALTITUDE_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Cannot get CAQ altitude"
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "code": "CCQ_CAQ_DFC_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Cannot get or set CAQ direct fan control"
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "code": "CCQ_HP_COMM_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "HP communication error",
+              "it": "Errore di comunicazione alla pompa di calore"
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "code": "CCQ_HP_T_PROBE_FAIL_1",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Supply temperature probe failed"
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "code": "CCQ_HP_T_PROBE_FAIL_2",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Incoil temperature probe failed"
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "code": "CCQ_HP_T_PROBE_FAIL_3",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Mixed air temperature probe failed"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "code": "CCQ_HP_T_PROBE_FAIL_4",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Outcoil temperature probe 1 failed"
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "code": "CCQ_HP_FAN_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Fan error"
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "code": "CCQ_HP_DRIVER_COMM_ERROR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Compressor driver communication error"
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "code": "CCQ_HP_DATA_TIMEOUT",
+          "reset": 0,
+          "description": [
+            {
+              "en": "HP data timeout"
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "code": "CCQ_FLOW_TOO_HIGH_FOR_BYPASS",
+          "reset": 0,
+          "description": [
+            {
+              "en": "The air flow has not been reduced to allow the bypass to move"
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "code": "CCQ_HP_PHASE_CURRENT_LIMIT_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Phase current limit error"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "code": "CCQ_HP_CURRENT_LIMIT_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Current limit error"
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "code": "CCQ_HP_PWR_LIMIT_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Power limit error"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "code": "CCQ_HP_T_DISCH_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Gas discharge temperature proble failed"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "code": "CCQ_HP_T_SHELL_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Compressor case temperature sensor error"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "code": "CCQ_HP_PFC_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Compressor driver PFC error"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "code": "CCQ_HP_DRIVER_ERROR_8",
+          "reset": 0,
+          "description": [
+            {
+              "en":"Compressor drive error code 8"
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "code": "CCQ_HP_DRIVER_ERROR_9",
+          "reset": 0,
+          "description": [
+            {
+              "en":"Compressor drive error code 9"
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "code": "CCQ_HP_DRIVER_ERROR_10",
+          "reset": 0,
+          "description": [
+            {
+              "en":"Compressor drive error code 10"
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "code": "CCQ_HP_DRIVER_ERROR_11", 
+          "reset": 0,
+          "description": [
+            {
+              "en":"Compressor drive error code 11"
+            }
+          ]
+        },
+        {
+          "id": 60,
+          "code": "CCQ_HP_DRIVER_ERROR_12",
+          "reset": 0,
+          "description": [
+            {
+              "en":"Compressor drive error code 12"
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "code": "CCQ_HP_DRIVER_ERROR_13",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Compressor drive error code 13"
+            }
+          ]
+        },
+        {
+          "id": 62,
+          "code": "CCQ_HP_DRIVER_ERROR_14",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Compressor drive error code 14"
+            }
+          ]
+        },
+        {
+          "id": 63,
+          "code": "CCQ_HP_DRIVER_ERROR_15",
+          "reset": 0,
+          "description": [
+            {
+              "en":"Compressor drive error code 15"
+            }
+          ]
+        },
+        {
+          "id": 71,
+          "code": "CCQ_DHW_COMM_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "DHW communication error"
+            }
+          ]
+        },
+        {
+          "id": 81,
+          "code": "CCQ_POWER_COMM_ERR",
+          "reset": 0,
+          "description": [
+            {
+              "en": "Power monitor communication error"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
