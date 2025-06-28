@@ -541,10 +541,11 @@ Data:
 | 4305 | | = 0 ?? |
 | 4306 | | = [0,0,0,0] ?? |
 
-
 ## Heat pump status codes
 
-| code | description                               | binary |
+The following status codes have been observed on different devices:
+
+| Code | Description                              | Binary |
 |------|-------------------------------------------|--------|
 | 0    | heat pump is off | 0000 0000 |
 | 1    | starting up      | 0000 0001 |
@@ -557,13 +558,17 @@ Data:
 | 75   | ?                | 0100 1011 |
 | 83   | ?                | 0101 0011 |
 
-The status value seems to be bit matrix. Without official documentation, it can be challenging to find out the meaning. Maybe it's like this:
-| bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+The status value seems to be a bit matrix. Without official documentation, it can be challenging to find out the meaning. Maybe it's like this:
+| Bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |-----|---|---|---|---|---|---|---|---|
-| val |128| 64| 32| 16| 8 | 4 | 2 | 1 |
-| meaning | ?? | anti-freeze? | ?? | dehumidification? | ?? | cooling | heating | running |
+| **Value** |128| 64| 32| 16| 8 | 4 | 2 | 1 |
+| **Meaning** | ?? | anti-freeze? | ?? | dehumidification? | ?? | cooling | heating | running |
 
-When cooling or heating, the heatpump sometimes seems to start with code 1.
+When cooling or heating, the heatpump sometimes starts with `1`.
+
+helgeklein's device alternates between `0`, `5`, and `21` in cooling mode.
+
+msfuture observed the following:
 
 During cooling, after quite a time the status switches to `19` for a short time. It could be some kind of defrost, although the supply coil then has an airflow with > 15°C and active defrosting should not be necessary. The supply temperature even got colder during this mode, so this could have an other reason.
 
