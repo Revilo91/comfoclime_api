@@ -6,7 +6,7 @@ The interface has a UUID, which can be polled with the first two API requests. A
 
 ### Device ID
 
-Each device connected to the ComfoNet bus also has a device ID (`DEVID`). This can be used to query data from the individual device. Some devices don't have a device ID (for example the option box). In such cases, `DEVID` is `NULL`.
+Each device connected to the ComfoNet bus also has a device ID (`DEVID`) which is identical to the device's serial number. This can be used to query data from the individual device. Some devices don't have a device ID (for example the option box). In such cases, `DEVID` is `NULL`.
 
 
 ## Known API Endpoints 
@@ -149,7 +149,7 @@ The example above is from an installation with ComfoAir, ComfoClime, and ComfoCo
 | Key name in JSON     | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
 | `uuid`               | UUID = serial number of the device.                          |
-| `modelTypeId`        | DEVID (?)                                                    |
+| `modelTypeId`        | Unknown                                                      |
 | `variant`            | Unknown                                                      |
 | `zoneId`             | Unkown                                                       |
 | `@modelType`         | Vendor model type                                            |
@@ -544,7 +544,7 @@ Data:
 
 ## Heat pump status codes
 
-| code | description                               | binary | 
+| code | description                               | binary |
 |------|-------------------------------------------|--------|
 | 0    | heat pump is off | 0000 0000 |
 | 1    | starting up      | 0000 0001 |
@@ -552,7 +552,7 @@ Data:
 | 5    | cooling          | 0000 0101 |
 | 17   | ?                | 0001 0001 |
 | 19   | ?                | 0001 0011 |
-| 21   | ?                | 0001 0101 |
+| 21   | cooling + dehumidification? | 0001 0101 |
 | 67   | ?                | 0100 0011 |
 | 75   | ?                | 0100 1011 |
 | 83   | ?                | 0101 0011 |
@@ -561,7 +561,7 @@ The status value seems to be bit matrix. Without official documentation, it can 
 | bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |-----|---|---|---|---|---|---|---|---|
 | val |128| 64| 32| 16| 8 | 4 | 2 | 1 |
-| meaning | ?? | anti-freeze? | ?? | ?? | ?? | cooling | heating | running |
+| meaning | ?? | anti-freeze? | ?? | dehumidification? | ?? | cooling | heating | running |
 
 When cooling or heating, the heatpump sometimes seems to start with code 1.
 
