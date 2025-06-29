@@ -2,11 +2,11 @@
 
 ### UUID
 
-The interface has a UUID, which can be polled with the first two API requests. All `/system/...` requests need the UUID of this interface. In the case of the ComfoClime unit, the UUID is identical to the device's serial number (as displayed in the ComfoClime app, for example).
+The API uses UUIDs to uniquely identify each device. The UUID is identical to the device's serial number (as displayed in the ComfoClime app, for example).
 
 ### Device ID
 
-Each device connected to the ComfoNet bus also has a device ID (`DEVID`) which is identical to the device's serial number. This can be used to query data from the individual device. Some devices don't have a device ID (for example the option box). In such cases, `DEVID` is `NULL`.
+Each device connected to the ComfoNet bus also has a device ID (`DEVID`, called `modelTypeId` in the API). Some devices don't have a device ID (for example the option box). In such cases, `DEVID` is `NULL`.
 
 
 ## Known API Endpoints 
@@ -23,10 +23,10 @@ Each device connected to the ComfoNet bus also has a device ID (`DEVID`) which i
 | `/system/$UUID$/alarms` | all errors of connected devices | seems to contain history |
 | `/system/$UUID$/scheduler` | list of schedules | |
 | `/system/$UUID$/thermalprofile` | reading/setting thermal profile | some values |
-| `/device/$DEVID$/property/X/Y/Z` | reading properties of device | |
-| `/device/$DEVID$/telemetry/N` | reading sensor values from device | |
-| `/device/$DEVID$/definition` | reads some basic data for the device | |
-| `/device/$DEVID$/method/X/Y/3` | setting properties of device | data contains additional byte Z at the beginning which seems to be the property ID |
+| `/device/$UUID$/property/X/Y/Z` | reading properties of device | |
+| `/device/$UUID$/telemetry/N` | reading sensor values from device | |
+| `/device/$UUID$/definition` | reads some basic data for the device | |
+| `/device/$UUID$/method/X/Y/3` | setting properties of device | data contains additional byte Z at the beginning which seems to be the property ID |
 
 ## API Endpoint Documentation
 
@@ -149,7 +149,7 @@ The example above is from an installation with ComfoAir, ComfoClime, and ComfoCo
 | Key name in JSON     | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
 | `uuid`               | UUID = serial number of the device.                          |
-| `modelTypeId`        | Unknown                                                      |
+| `modelTypeId`        | DEVID, represents the model type on the ComfoNet bus.        |
 | `variant`            | Unknown                                                      |
 | `zoneId`             | Unkown                                                       |
 | `@modelType`         | Vendor model type                                            |
@@ -376,7 +376,7 @@ The `./property` endpoint reads values from the ComfoNet bus similiar to the RMI
 The address translates like:
 
 ```
-/device/$DEVID$/property/X/Y/Z
+/device/$UUID$/property/X/Y/Z
 where:
 X = Unit
 Y = Subunit
@@ -553,7 +553,7 @@ The following status codes have been observed on different devices:
 | 5    | cooling          | 0000 0101 |
 | 17   | ?                | 0001 0001 |
 | 19   | ?                | 0001 0011 |
-| 21   | cooling + dehumidification? | 0001 0101 |
+| 21   | ? | 0001 0101 |
 | 67   | ?                | 0100 0011 |
 | 75   | ?                | 0100 1011 |
 | 83   | ?                | 0101 0011 |
@@ -562,11 +562,11 @@ The status value seems to be a bit matrix. Without official documentation, it ca
 | Bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |-----|---|---|---|---|---|---|---|---|
 | **Value** |128| 64| 32| 16| 8 | 4 | 2 | 1 |
-| **Meaning** | ?? | anti-freeze? | ?? | dehumidification? | ?? | cooling | heating | running |
+| **Meaning** | ?? | anti-freeze? | ?? | ?? | ?? | cooling | heating | running |
 
 When cooling or heating, the heatpump sometimes starts with `1`.
 
-helgeklein's device alternates between `0`, `5`, and `21` in cooling mode.
+helgeklein's ComfoClime 36 device alternates between `0`, `5`, and `21` in cooling mode. On hot days, it operates mostly in state `21`.
 
 msfuture observed the following:
 
