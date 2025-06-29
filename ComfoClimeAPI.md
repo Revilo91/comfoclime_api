@@ -28,12 +28,18 @@ Each device connected to the ComfoNet bus also has a device ID (`DEVID`, called 
 | `/device/$UUID$/definition` | reads some basic data for the device | |
 | `/device/$UUID$/method/X/Y/3` | setting properties of device | data contains additional byte Z at the beginning which seems to be the property ID |
 
+### API Endpoints and UUIDs
+
+The `system/$UUID$/*` APIs only work for the UUIDs of the ComfoClime devices.
+
+The `device/$UUID$/*` APIs work for the UUIDs of the ComfoClime devices as well as for other devices connected to the ComfoNet bus, e.g., a ComfoAirQ device.
+
 ## API Endpoint Documentation
 
 **Notes:** When using the commands in the examples below, make sure to make the following replacements:
 
-- `IP_ADDRESS`: ip address or hostname of your ComfoClime unit.
-- `UUID`: serial number of your ComfoClime unit (as displayed in the ComfoClime app).
+- `$IP_ADDRESS$`: ip address or hostname of your ComfoClime unit.
+- `$UUID$`: serial number of your ComfoClime unit (as displayed in the ComfoClime app).
 
 ### API Endpoint /system/$UUID$/dashboard
 
@@ -46,7 +52,7 @@ GET /system/$UUID$/dashboard
 #### Curl Example
 
 ```bash
-curl IP_ADDRESS/system/UUID/dashboard
+curl $IP_ADDRESS$/system/UUID/dashboard
 ```
 
 #### Returned JSON
@@ -100,7 +106,7 @@ GET /system/$UUID$/devices
 #### Curl Example
 
 ```bash
-curl IP_ADDRESS/system/UUID/devices
+curl $IP_ADDRESS$/system/UUID/devices
 ```
 
 #### Returned JSON
@@ -170,7 +176,7 @@ GET /system/$UUID$/thermalprofile
 #### Curl Example
 
 ```bash
-curl IP_ADDRESS/system/UUID/thermalprofile
+curl $IP_ADDRESS$/system/UUID/thermalprofile
 ```
 
 #### Returned JSON
@@ -231,7 +237,7 @@ GET /system/$UUID$/alarms
 #### Curl Example
 
 ```bash
-curl IP_ADDRESS/system/UUID/alarms
+curl $IP_ADDRESS$/system/UUID/alarms
 ```
 
 #### Returned JSON
