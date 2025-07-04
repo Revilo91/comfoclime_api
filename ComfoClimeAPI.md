@@ -529,7 +529,7 @@ Data:
 | 4195 | | supply coil temperature |
 | 4196 | | exhaust coil temperature |
 | 4197 | | compressor temperature? compressor target temperature? |
-| 4198 | | = 0 ?? = 50 ?? |
+| 4198 | | = 0-100 Power % from heatpump? |
 | 4199 | | = 0 ?? |
 | 4201 | | current power |
 | 4202 | | = [52,1] ?? high pressure / hot side |
