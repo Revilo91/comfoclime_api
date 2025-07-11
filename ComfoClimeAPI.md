@@ -77,6 +77,27 @@ curl $IP_ADDRESS$/system/UUID/dashboard
 
 The example above is from ComfoClime unit with firmware version `1.5.0`.
 
+
+```json
+{
+  "indoorTemperature": 22.8,
+  "outdoorTemperature": 18.8,
+  "exhaustAirFlow": 193,
+  "supplyAirFlow": 194,
+  "fanSpeed": 2,
+  "setPointTemperature": 18,
+  "season": 2,
+  "schedule": 0,
+  "status": 0,
+  "heatPumpStatus": 5,
+  "hpStandby": false,
+  "freeCoolingEnabled": false,
+  "caqFreeCoolingAvailable": true
+}
+```
+
+The example above is from ComfoClime unit with firmware version `1.5.5`.
+
 #### Fields
 
 | Key name in JSON     | Description                                                  |
