@@ -57,6 +57,8 @@ curl $IP_ADDRESS$/system/UUID/dashboard
 
 #### Returned JSON
 
+Example from a ComfoClime device with firmware version `1.5.5` and temperature selection in `auto` mode:
+
 ```json
 {
    "indoorTemperature": 25.4,
@@ -71,50 +73,30 @@ curl $IP_ADDRESS$/system/UUID/dashboard
    "status": 1,
    "heatPumpStatus": 5,
    "hpStandby": false,
-   "freeCoolingEnabled": false
+   "freeCoolingEnabled": false,
+   "caqFreeCoolingAvailable": true
 }
 ```
-
-The example above is from ComfoClime unit with firmware version `1.5.0`.
-
-
-```json
-{
-  "indoorTemperature": 22.8,
-  "outdoorTemperature": 18.8,
-  "exhaustAirFlow": 193,
-  "supplyAirFlow": 194,
-  "fanSpeed": 2,
-  "setPointTemperature": 18,
-  "season": 2,
-  "schedule": 0,
-  "status": 0,
-  "heatPumpStatus": 5,
-  "hpStandby": false,
-  "freeCoolingEnabled": false,
-  "caqFreeCoolingAvailable": true
-}
-```
-
-The example above is from ComfoClime unit with firmware version `1.5.5`.
 
 #### Fields
 
-| Key name in JSON     | Description                                                  |
-| -------------------- | ------------------------------------------------------------ |
-| `indoorTemperature`  | Temperature of the extracted air from inside the house.      |
-| `outdoorTemperature` | Temperature of the outside air.                              |
-| `exhaustAirFlow`     | Volume of the air blown out of the house per time unit.      |
-| `supplyAirFlow`      | Volume of the air blown into the house per time unit.        |
-| `fanSpeed`           | Fan speed of the ComfoAir unit. This may be overridden by the ComfoClime device. |
-| `seasonProfile`      | Current season profile (not available in the ComfoClime app). |
-| `temperatureProfile` | Current temperature profile (eco, comfort, power).           |
-| `season`             | Current season (heating, cooling, transitional).             |
-| `schedule`           | Current schedule ID.                                         |
-| `status`             | Unknown.                                                     |
-| `heatPumpStatus`     | Bitfield indicating the heat pump's status (see below).      |
-| `hpStandby`          | Device power: off or on.                                     |
-| `freeCoolingEnabled` | Current "free cooling" status (using cool outside air with the bypass at 0% instead of active cooling). |
+| Key name in JSON          | Min. firmware | Description                                                  |
+| ------------------------- | ------------- | ------------------------------------------------------------ |
+| `indoorTemperature`       |               | Temperature of the extracted air from inside the house.      |
+| `outdoorTemperature`      |               | Temperature of the outside air.                              |
+| `exhaustAirFlow`          |               | Volume of the air blown out of the house per time unit.      |
+| `supplyAirFlow`           |               | Volume of the air blown into the house per time unit.        |
+| `fanSpeed`                |               | Fan speed of the ComfoAir unit. This may be overridden by the ComfoClime device. |
+| `setPointTemperature`     |               | Manually selected temperature.<br />**Note:**This field is only returned if temperature selection is in manual mode. In that case, the fields `seasonProfile` and `temperatureProfile` are not returned in the JSON. |
+| `seasonProfile`           |               | Current season profile (not available in the ComfoClime app).<br />**Note:**This field is only returned if temperature selection is in auto mode. In that case, the field `setPointTemperature` is not returned in the JSON. |
+| `temperatureProfile`      |               | Current temperature profile (eco, comfort, power).<br />**Note:**This field is only returned if temperature selection is in auto mode. In that case, the field `setPointTemperature` is not returned in the JSON. |
+| `season`                  |               | Current season (heating, cooling, transitional).             |
+| `schedule`                |               | Current schedule ID.                                         |
+| `status`                  |               | Unknown.                                                     |
+| `heatPumpStatus`          |               | Bitfield indicating the heat pump's status (see below).      |
+| `hpStandby`               |               | Device power: off or on.                                     |
+| `freeCoolingEnabled`      | 1.5.0         | Current "free cooling" status (using cool outside air with the bypass at 100% instead of active cooling). |
+| `caqFreeCoolingAvailable` | 1.5.5         | Active (heat pump) cooling supported by "free cooling" (using cool outside air). |
 
 ### API Endpoint /system/$UUID$/devices
 
